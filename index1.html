@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    td { padding: 2px 4px; }
+    .result td:first-child { width: 170px; }
+  </style>
+</head>
+<body>
+  <h1>JS Exercise 1</h1>
+  <table>
+    <tr>
+      <td>Enter First Number:</td>
+      <td><input type="number" id="num1"></td>
+    </tr>
+    <tr>
+      <td>Enter Second Number:</td>
+      <td><input type="number" id="num2"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button onclick="calculate()">Calculate</button>
+        <button onclick="clearAll()">Clear</button>
+      </td>
+    </tr>
+  </table>
+
+  <table class="result">
+    <tr><td>Sum:</td><td id="sum"></td></tr>
+    <tr><td>Difference:</td><td id="diff"></td></tr>
+    <tr><td>Product:</td><td id="prod"></td></tr>
+    <tr><td>Quotient:</td><td id="quot"></td></tr>
+  </table>
+
+  <script>
+    function calculate() {
+      const a = parseFloat(document.getElementById("num1").value);
+      const b = parseFloat(document.getElementById("num2").value);
+      if (isNaN(a) || isNaN(b)) {
+        alert("Please enter two valid numbers.");
+        return;
+      }
+      document.getElementById("sum").textContent = a + b;
+      document.getElementById("diff").textContent = a - b;
+      document.getElementById("prod").textContent = a * b;
+      document.getElementById("quot").textContent = b === 0 ? "Undefined" : a / b;
+    }
+
+    function clearAll() {
+      ["num1", "num2"].forEach(id => document.getElementById(id).value = "");
+      ["sum", "diff", "prod", "quot"].forEach(id => document.getElementById(id).textContent = "");
+      document.getElementById("num1").focus();
+    }
+  </script>
+</body>
+</html>

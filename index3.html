@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #sum     { color: blue;  font-weight: bold; }
+    #highest { color: green; font-weight: bold; }
+    #lowest  { color: red;   font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>JS Exercise 3</h1>
+
+  <p>Enter a Number: <input type="number" id="num"></p>
+  <p>
+    <button onclick="insertNumber()">Insert</button>
+    <button onclick="deleteAll()">Delete All</button>
+  </p>
+
+  <p>Numbers:</p>
+  <div id="list"></div>
+
+  <p>
+    Sum: <span id="sum"></span><br>
+    Highest: <span id="highest"></span><br>
+    Lowest: <span id="lowest"></span>
+  </p>
+
+  <script>
+    let numbers = [];
+
+    function insertNumber() {
+      const input = document.getElementById("num");
+      const value = parseFloat(input.value);
+      if (isNaN(value)) {
+        alert("Please enter a valid number.");
+        return;
+      }
+      numbers.push(value);
+      input.value = "";
+      input.focus();
+      render();
+    }
+
+    function deleteAll() {
+      numbers = [];
+      render();
+    }
+
+    function render() {
+      document.getElementById("list").innerHTML = numbers.join("<br>");
+      if (numbers.length === 0) {
+        ["sum", "highest", "lowest"].forEach(id => document.getElementById(id).textContent = "");
+        return;
+      }
+      document.getElementById("sum").textContent = numbers.reduce((a, b) => a + b, 0);
+      document.getElementById("highest").textContent = Math.max(...numbers);
+      document.getElementById("lowest").textContent = Math.min(...numbers);
+    }
+  </script>
+</body>
+</html>

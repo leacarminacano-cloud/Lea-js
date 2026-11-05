@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    td { padding: 2px 4px; }
+  </style>
+</head>
+<body>
+  <h1>JS Exercise 2</h1>
+  <table>
+    <tr>
+      <td>First Name:</td>
+      <td><input type="text" id="first"></td>
+    </tr>
+    <tr>
+      <td>Middle Name:</td>
+      <td><input type="text" id="middle"></td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td><input type="text" id="last"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button onclick="generate()">Generate Fullname</button>
+        <button onclick="clearEntries()">Clear Entries</button>
+      </td>
+    </tr>
+  </table>
+
+  <p>Full Name:<br><strong id="fullname"></strong></p>
+
+  <script>
+    function generate() {
+      const parts = ["first", "middle", "last"]
+        .map(id => document.getElementById(id).value.trim())
+        .filter(Boolean);
+      document.getElementById("fullname").textContent = parts.join(" ");
+    }
+
+    function clearEntries() {
+      ["first", "middle", "last"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("fullname").textContent = "";
+      document.getElementById("first").focus();
+    }
+  </script>
+</body>
+</html>
